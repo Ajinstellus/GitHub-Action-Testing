@@ -29,7 +29,7 @@ jobs:
           echo "Pipeline is Working"
 
       - name: Pipeline Success
-        if: sucess()
+        if: success()
         run: echo "Pipeline completed successfully"
 
       - name: Pipeline failure
