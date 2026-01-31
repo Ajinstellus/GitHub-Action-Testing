@@ -1,0 +1,41 @@
+name: Python app testing CI
+
+on:
+  push:
+    branches:
+      - testing
+  workflow_dispatch:
+
+env:
+  APP_NAME: "python-app"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify Environment
+        run: |
+          echo "Checking tools"
+          docker -version
+          python -version
+          kubectl version --client
+
+      - name: Smoke Test
+        run: |
+          echo "Pipeline is Working"
+
+      - name: Pipeline Success
+        if: sucess()
+        run: echo "Pipeline completed successfully"
+
+      - name: Pipeline failure
+        if: failure()
+        run: echo "Pipeline failed"
+
+      - name: Always Run
+        if: always()
+        run: echo "Pipeline finished (success or failure)" 
