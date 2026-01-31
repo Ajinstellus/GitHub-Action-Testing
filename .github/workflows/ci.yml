@@ -20,8 +20,8 @@ jobs:
       - name: Verify Environment
         run: |
           echo "Checking tools"
-          docker -version
-          python -version
+          docker --version
+          python3 --version
           kubectl version --client
 
       - name: Smoke Test
